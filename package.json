@@ -1,0 +1,25 @@
+{
+  "name": "react-router-role-authorization",
+  "version": "1.0.0",
+  "description": "Role-based authorization components for React and React-Router",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burczu/react-router-role-authorization.git"
+  },
+  "keywords": [
+    "react",
+    "react-router",
+    "role-based",
+    "authorization"
+  ],
+  "author": "Bartłomiej Dybowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burczu/react-router-role-authorization/issues"
+  },
+  "homepage": "https://github.com/burczu/react-router-role-authorization#readme"
+}
