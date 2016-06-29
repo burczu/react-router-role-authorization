@@ -6,9 +6,9 @@
     "test": "eslint lib/ spec/ && ./node_modules/karma/bin/karma start karma.conf.js",
     "watch-test": "./node_modules/karma/bin/karma start karma.conf.js --auto-watch --no-single-run",
     "build": "webpack -p",
-    "rename-css-bower-dependencies": "find bower_components -name '*.css' | sed -e 'p;s/.css$/.scss/' | xargs -n2 mv",
     "start": "webpack-dev-server --inline --hot"
   },
+  "main": "dist/index.js",
   "author": "",
   "license": "BSD",
   "keywords": [

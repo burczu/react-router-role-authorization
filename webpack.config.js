@@ -6,8 +6,8 @@ module.exports = {
   entry: './lib/index.js',
 
   output: {
-    path: path.join(__dirname),
-    filename: 'react-router-role-authorization.js',
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.js',
     libraryTarget: 'umd',
     library: 'ReactRouterRoleAuthorization'
   },
