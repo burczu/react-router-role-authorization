@@ -1,20 +1,22 @@
 {
   "name": "react-router-role-authorization",
   "version": "1.0.0",
-  "description": "react router role authorization",
+  "description": "Role-based authorization component for React and React-Router",
   "scripts": {
     "test": "eslint lib/ spec/ && ./node_modules/karma/bin/karma start karma.conf.js",
     "watch-test": "./node_modules/karma/bin/karma start karma.conf.js --auto-watch --no-single-run",
-    "build": "webpack -p",
+    "build": "webpack",
     "start": "webpack-dev-server --inline --hot"
   },
   "main": "dist/index.js",
-  "author": "",
+  "author": "Bartłomiej Dybowski",
   "license": "BSD",
   "keywords": [
     "react",
     "reactjs",
-    "react-component"
+    "react-component",
+    "authorization",
+    "user roles"
   ],
   "devDependencies": {
     "babel-core": "^6.10.4",
