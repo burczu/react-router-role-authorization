@@ -12,15 +12,21 @@ module.exports = {
     library: 'ReactRouterRoleAuthorization'
   },
 
-  externals: {
-   'react': 'var React',
-   'react/addons': 'var React'
-  },
+  externals: [
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
+      }
+    }
+  ],
 
   module: {
     loaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         loader: 'babel',
         exclude: /node_modules/
       }

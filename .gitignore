@@ -34,3 +34,6 @@ bower_components/
 
 # dist
 dist
+
+# packed npm module
+*.tgz

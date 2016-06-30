@@ -1,0 +1,21 @@
+# WebStorm
+.idea
+
+# dist
+lib
+
+# test
+spec
+
+# node
+node_modules
+
+# other files
+.babelrc
+.editorconfig
+.eslintrc
+.gitignore
+.npmignore
+index.html
+karma.conf.js
+webpack.config.js
