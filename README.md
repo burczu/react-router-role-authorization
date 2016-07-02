@@ -1,10 +1,12 @@
 # Role-based authorization component for react-router
 
-React-Router Role Authorization is a library which can help you in controlling access to specific routes depending on given user roles.
+React-Router Role Authorization is a library which can help you in controlling the access to specific routes depending on given user roles.
+
+*This is an implementation of the approach I previously described in my blog post: [Role-based authorization using React-Router](http://frontendinsights.com/role-based-authorization-using-react-router/)*
 
 ## Installation
 
-This library is available as a NPM package, so you can install it as any other package:
+This library is available as a NPM package, so you can install it as you would any other package:
 
 ```
 npm install --save-dev react-router-role-authorization
@@ -12,11 +14,11 @@ npm install --save-dev react-router-role-authorization
 
 ## Usage
 
-React-Router Role Authorization library provides two React components: `AuthorizedComponent` and `RoleAwareComponent`. Please see below what is their purpose and how to utilize them in your application.
+React-Router Role Authorization library provides two React components: `AuthorizedComponent` and `RoleAwareComponent`. Please see below their purpose and how to utilize them in your application.
 
 ### AuthorizedComponent
 
-Thanks to `AuthorizedComponent` you can handle access to the route only for specific user roles. To do that, at first you have to configure your routes:
+Thanks to `AuthorizedComponent` you can handle access to the route only for specific user roles. To do that, first you have to configure your routes:
 
 ```JSX
 ReactDOM.render((
@@ -32,11 +34,11 @@ ReactDOM.render((
 ), document.getElementById('app'));
 ```
 
-As you can see, all you have to do is to add the `authorize` attribute to the main routes of your application. By using passing an array of user role names to this attribute, you can define which user roles make this route available.
+As you can see, all you have to do is to add the `authorize` attribute to the main routes of your application. By passing an array of user role names to this attribute, you can define which user roles make this route available.
 
-Additionally you should define a "not found" route which is not restricted by any user role. This will be the place where the user will be redirected if he would try to access an unavailable route.
+Additionally you should define a "not found" route which is not restricted by any user role. This will be the place where the user will be redirected to if he will try to access an unavailable route.
 
-The second thing you have to do is the use of the `AuthorizedComponent`. As an example, let's take a look on the sample route configuration above and consider the `RestrictedContainer` component which is related to the `/restricted` route path. As you can see it is restricted by the `admin` user role:
+The second thing you have to do is to use the `AuthorizedComponent`. As an example, let's take a look at the sample route configuration above and consider the `RestrictedContainer` component which is related to the `/restricted` route path. As you can see it is restricted by the `admin` user role:
 
 ```JavaScript
 import React from 'react';
@@ -64,17 +66,17 @@ class RestrictedContainer extends AuthorizedComponent {
 export default RestrictedContainer;
 ```
 
-Ok, so all you have to do to make it working is to inherit the `RestrictedContainer` component from `AuthorizedComponent` and set up two properties inside the constructor of the component.
+Ok, so all you have to do to make it work is to inherit the `RestrictedContainer` component from `AuthorizedComponent` and set up two properties inside the constructor of the component.
 
-The `this.userRoles` property should hold an array of user role names (array of strings - e.g. `['admin', 'mod']`) which are usually obtained during the authentication process and are usually hold in the suitable cookie (`Cookies.get('user').roles` is only the example - you can handle it whatever you like, but basically it should return an array of user role names).
+The `this.userRoles` property should hold an array of user role names (array of strings - e.g. `['admin', 'mod']`) which are usually obtained during the authentication process and are usually held in a suitable cookie (`Cookies.get('user').roles` is only an example - you can handle it however you like but basically it should return an array of user role names).
 
-The `this.notAuthorizedPath` property is intended to be set to the path name of the route where the user should be redirected in case of no access.
+The `this.notAuthorizedPath` property is intended to be set to the path name of the route where the user will be redirected in case of no access.
 
 And that's it - from now on, all child routes of the `RestrictedContainer` component will be restricted by the `admin` user role.
 
 ### RoleAwareComponent
 
-The `RoleAwareComponent` component gives you an ability to show or hide the component depending on given user roles.
+The `RoleAwareComponent` component gives you the ability to show or hide the component depending on given user roles.
 
 Its usage is very simple and similar to the `AuthorizedComponent` component:
 
@@ -105,11 +107,11 @@ class BoxOne extends RoleAwareComponent {
 export default BoxOne;
 ```
 
-The `BoxOne` component inherits from the `RoleAwareComponent` component. And again, all the setup is done inside the constructor - `this.allowedRoles` is an array of user role names which makes this component visible; `this.userRoles` is an array of user role names which the user has.
+The `BoxOne` component inherits from the `RoleAwareComponent` component. And again, the whole setup is done inside the constructor - `this.allowedRoles` is an array of user role names which make this component visible; `this.userRoles` is an array of user role names which the user has.
 
-But this is not all. The component provides two methods: `this.rolesMatched` adn `this.rolesMatchedExact` which can be used inside the `render` method of the component:
+But this is not all. The component provides two methods: `this.rolesMatched` and `this.rolesMatchedExact` which can be used inside the `render` method of the component:
 
-- `this.rolesMatched` find the intersection of the two arrays and returns `true` if at least one of the user roles is present among the available roles.
+- `this.rolesMatched` finds the intersection of the two arrays and returns `true` if at least one of the user roles is present among the available roles.
 - `this.rolesMatchedExact` checks if the available roles array has exactly the same items as the user roles array.
 
 As you can see in the example above, you can use one of these methods to return the markup of the component or just `null`.
