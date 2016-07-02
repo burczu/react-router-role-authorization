@@ -64,10 +64,52 @@ class RestrictedContainer extends AuthorizedComponent {
 export default RestrictedContainer;
 ```
 
-Ok, so make everything working, all you have to do is to inherit the `RestrictedContainer` component from `AuthorizedComponent` and set up two properties inside the constructor of the component.
+Ok, so all you have to do to make it working is to inherit the `RestrictedContainer` component from `AuthorizedComponent` and set up two properties inside the constructor of the component.
 
-The `this.userRoles` property should hold user roles which are usually obtained during the authentication process and are usually hold in the suitable cookie (`Cookies.get('user').roles` is only the example - you can handle it whatever you like, but basically it should return an array of user role names).
+The `this.userRoles` property should hold an array of user role names (array of strings - e.g. `['admin', 'mod']`) which are usually obtained during the authentication process and are usually hold in the suitable cookie (`Cookies.get('user').roles` is only the example - you can handle it whatever you like, but basically it should return an array of user role names).
 
 The `this.notAuthorizedPath` property is intended to be set to the path name of the route where the user should be redirected in case of no access.
 
 And that's it - from now on, all child routes of the `RestrictedContainer` component will be restricted by the `admin` user role.
+
+### RoleAwareComponent
+
+The `RoleAwareComponent` component gives you an ability to show or hide the component depending on given user roles.
+
+Its usage is very simple and similar to the `AuthorizedComponent` component:
+
+```JavaScript
+import React from 'react';
+import { RoleAwareComponent } from 'react-router-role-authorization';
+import Cookies from 'js-cookie';
+
+class BoxOne extends RoleAwareComponent {
+  constructor(props) {
+    super(props);
+
+    this.allowedRoles = ['user'];
+    this.userRoles = Cookies.get('user').roles;
+  }
+
+  render() {
+    const jsx = (
+      <div>
+        Box One
+      </div>
+    );
+
+    return this.rolesMatched() ? jsx : null;
+  }
+}
+
+export default BoxOne;
+```
+
+The `BoxOne` component inherits from the `RoleAwareComponent` component. And again, all the setup is done inside the constructor - `this.allowedRoles` is an array of user role names which makes this component visible; `this.userRoles` is an array of user role names which the user has.
+
+But this is not all. The component provides two methods: `this.rolesMatched` adn `this.rolesMatchedExact` which can be used inside the `render` method of the component:
+
+- `this.rolesMatched` find the intersection of the two arrays and returns `true` if at least one of the user roles is present among the available roles.
+- `this.rolesMatchedExact` checks if the available roles array has exactly the same items as the user roles array.
+
+As you can see in the example above, you can use one of these methods to return the markup of the component or just `null`.
