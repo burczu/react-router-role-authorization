@@ -38,7 +38,7 @@ Additionally you should define a "not found" route which is not restricted by an
 
 The second thing you have to do is the use of the `AuthorizedComponent`. As an example, let's take a look on the sample route configuration above and consider the `RestrictedContainer` component which is related to the `/restricted` route path. As you can see it is restricted by the `admin` user role:
 
-```JSX
+```JavaScript
 import React from 'react';
 import RouteHandler from './RouteHandler';
 import { AuthorizedComponent } from 'react-router-role-authorization';
