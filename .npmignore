@@ -19,3 +19,4 @@ node_modules
 index.html
 karma.conf.js
 webpack.config.js
+pakmanaged.js

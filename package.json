@@ -1,7 +1,7 @@
 {
   "name": "react-router-role-authorization",
   "version": "1.0.0",
-  "description": "Role-based authorization component for React and React-Router",
+  "description": "Role-based authorization component for react-router",
   "scripts": {
     "test": "eslint lib/ spec/ && ./node_modules/karma/bin/karma start karma.conf.js",
     "watch-test": "./node_modules/karma/bin/karma start karma.conf.js --auto-watch --no-single-run",
@@ -42,7 +42,6 @@
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-sourcemap-loader": "~0.3.5",
     "karma-webpack": "~1.7.0",
-    "lodash": "^4.13.1",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
@@ -52,6 +51,7 @@
   "dependencies": {
     "babel-runtime": "^6.9.2",
     "react": "^15.1.0",
-    "react-router": "^2.5.1"
+    "react-router": "^2.5.1",
+    "lodash": "^4.13.1"
   }
 }
