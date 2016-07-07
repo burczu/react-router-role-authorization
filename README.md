@@ -1,4 +1,7 @@
 [![npm version](https://badge.fury.io/js/react-router-role-authorization.svg)](https://badge.fury.io/js/react-router-role-authorization)
+[![GitHub issues](https://img.shields.io/github/issues/burczu/react-router-role-authorization.svg)](https://github.com/burczu/react-router-role-authorization/issues)
+[![GitHub forks](https://img.shields.io/github/forks/burczu/react-router-role-authorization.svg)](https://github.com/burczu/react-router-role-authorization/network)
+[![GitHub stars](https://img.shields.io/github/stars/burczu/react-router-role-authorization.svg)](https://github.com/burczu/react-router-role-authorization/stargazers)
 
 # Role-based authorization for react-router
 
