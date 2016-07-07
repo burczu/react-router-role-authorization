@@ -1,4 +1,6 @@
-# Role-based authorization component for react-router
+[![npm version](https://badge.fury.io/js/react-router-role-authorization.svg)](https://badge.fury.io/js/react-router-role-authorization)
+
+# Role-based authorization for react-router
 
 React-Router Role Authorization is a library which can help you in controlling the access to specific routes depending on given user roles.
 
