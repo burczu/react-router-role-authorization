@@ -115,3 +115,43 @@ But this is not all. The component provides two methods: `this.rolesMatched` and
 - `this.rolesMatchedExact` checks if the available roles array has exactly the same items as the user roles array.
 
 As you can see in the example above, you can use one of these methods to return the markup of the component or just `null`.
+
+### Custom handling of unauthorized access
+
+By default when a user with insufficient roles tries to access a component he is redirected to `notAuthorizedPath` 
+defined in `AuthorizedComponent`. Sometimes this may be an inappropriate behaviour and you may want to popup a message.
+
+You can change the default behaviour by overriding method `handleUnauthorizedRole(routeRoles, userRoles)` from 
+`AuthorizedComponent`. 
+
+```JavaScript
+import React from 'react';
+import RouteHandler from './RouteHandler';
+import { AuthorizedComponent } from 'react-router-role-authorization';
+import Cookies from 'js-cookie';
+
+class RestrictedContainer extends AuthorizedComponent {
+  constructor(props) {
+    super(props);
+
+    this.userRoles = Cookies.get('user').roles;
+    this.notAuthorizedPath = '/not-found';
+    
+  }
+  
+  handleUnauthorizedRole(routeRoles, userRoles){
+      /** DO WHATEVER YOU NEED WHEN AUTHORIZATION WAS NOT SUCCESSFUL */
+      showFlashMessage(`Current user needs one of ${routeRoles} to access the component.`)
+  }
+
+  render() {
+    return (
+      <div>
+        <RouteHandler {...this.props} />
+      </div>
+    );
+  }
+}
+
+export default RestrictedContainer;
+```
