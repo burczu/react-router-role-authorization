@@ -74,6 +74,46 @@ The `this.notAuthorizedPath` property is intended to be set to the path name of 
 
 And that's it - from now on, all child routes of the `RestrictedContainer` component will be restricted by the `admin` user role.
 
+#### Custom handling of unauthorized access
+
+By default when a user with insufficient roles tries to access a component he is redirected to `notAuthorizedPath` 
+defined in `AuthorizedComponent`. Sometimes this may be an inappropriate behaviour and you may want to popup a message.
+
+You can change the default behaviour by overriding method `handleUnauthorizedRole(routeRoles, userRoles)` from 
+`AuthorizedComponent`. 
+
+```JavaScript
+import React from 'react';
+import RouteHandler from './RouteHandler';
+import { AuthorizedComponent } from 'react-router-role-authorization';
+import Cookies from 'js-cookie';
+
+class RestrictedContainer extends AuthorizedComponent {
+  constructor(props) {
+    super(props);
+
+    this.userRoles = Cookies.get('user').roles;
+    this.notAuthorizedPath = '/not-found';
+    
+  }
+  
+  handleUnauthorizedRole(routeRoles, userRoles){
+      /** DO WHATEVER YOU NEED WHEN AUTHORIZATION WAS NOT SUCCESSFUL */
+      showFlashMessage(`Current user needs one of ${routeRoles} to access the component.`)
+  }
+
+  render() {
+    return (
+      <div>
+        <RouteHandler {...this.props} />
+      </div>
+    );
+  }
+}
+
+export default RestrictedContainer;
+```
+
 ### RoleAwareComponent
 
 The `RoleAwareComponent` component gives you the ability to show or hide the component depending on given user roles.
@@ -116,42 +156,3 @@ But this is not all. The component provides two methods: `this.rolesMatched` and
 
 As you can see in the example above, you can use one of these methods to return the markup of the component or just `null`.
 
-### Custom handling of unauthorized access
-
-By default when a user with insufficient roles tries to access a component he is redirected to `notAuthorizedPath` 
-defined in `AuthorizedComponent`. Sometimes this may be an inappropriate behaviour and you may want to popup a message.
-
-You can change the default behaviour by overriding method `handleUnauthorizedRole(routeRoles, userRoles)` from 
-`AuthorizedComponent`. 
-
-```JavaScript
-import React from 'react';
-import RouteHandler from './RouteHandler';
-import { AuthorizedComponent } from 'react-router-role-authorization';
-import Cookies from 'js-cookie';
-
-class RestrictedContainer extends AuthorizedComponent {
-  constructor(props) {
-    super(props);
-
-    this.userRoles = Cookies.get('user').roles;
-    this.notAuthorizedPath = '/not-found';
-    
-  }
-  
-  handleUnauthorizedRole(routeRoles, userRoles){
-      /** DO WHATEVER YOU NEED WHEN AUTHORIZATION WAS NOT SUCCESSFUL */
-      showFlashMessage(`Current user needs one of ${routeRoles} to access the component.`)
-  }
-
-  render() {
-    return (
-      <div>
-        <RouteHandler {...this.props} />
-      </div>
-    );
-  }
-}
-
-export default RestrictedContainer;
-```
