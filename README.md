@@ -77,9 +77,9 @@ And that's it - from now on, all child routes of the `RestrictedContainer` compo
 #### Custom handling of unauthorized access
 
 By default when a user with insufficient roles tries to access a component he is redirected to `notAuthorizedPath` 
-defined in `AuthorizedComponent`. Sometimes this may be an inappropriate behaviour and you may want to popup a message.
+defined in `AuthorizedComponent`. Sometimes you may want to, for example, log it to console etc.
 
-You can change the default behaviour by overriding method `handleUnauthorizedRole(routeRoles, userRoles)` from 
+You can achieve it by overriding method `handleUnauthorizedRole(routeRoles, userRoles)` from 
 `AuthorizedComponent`. 
 
 ```JavaScript
@@ -118,7 +118,7 @@ class RestrictedContainer extends AuthorizedComponent {
 export default RestrictedContainer;
 ```
 
-WARNING! Be careful - if you override the `handleUnauthorizedRole` method, it will stop redirecting to the `notAuthorizedPath` path. Instead, it will allow access to the restricted route so you have to prevent it on your own (by redirecting somewhere manually or calling `super.handleUnauthorizedRole()` to use the default behaviour).
+**WARNING!** Be careful - if you override the `handleUnauthorizedRole` method, it will stop redirecting to the `notAuthorizedPath` path. Instead, it will allow access to the restricted route so you have to prevent it on your own (by redirecting somewhere manually or calling `super.handleUnauthorizedRole()` to use the default behaviour).
 
 ### RoleAwareComponent
 
