@@ -20,7 +20,7 @@ React-Router Role Authorization library provides two React components: `Authoriz
 
 Thanks to `AuthorizedComponent` you can handle access to the route only for specific user roles. To do that, first you have to configure your routes:
 
-```JavaScript
+```JSX
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route component={AppContainer} path="/">
