@@ -20,7 +20,7 @@ React-Router Role Authorization library provides two React components: `Authoriz
 
 Thanks to `AuthorizedComponent` you can handle access to the route only for specific user roles. To do that, first you have to configure your routes:
 
-```JSX
+```JavaScript
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route component={AppContainer} path="/">
@@ -94,12 +94,16 @@ class RestrictedContainer extends AuthorizedComponent {
 
     this.userRoles = Cookies.get('user').roles;
     this.notAuthorizedPath = '/not-found';
-    
   }
   
   handleUnauthorizedRole(routeRoles, userRoles){
-      /** DO WHATEVER YOU NEED WHEN AUTHORIZATION WAS NOT SUCCESSFUL */
-      showFlashMessage(`Current user needs one of ${routeRoles} to access the component.`)
+    // handle unsuccessful authorization somehow
+    console.log(`Route is available for roles: ${routeRoles}, but your roles are: ${userRoles}...`);
+    
+    // you should still redirect somewhere else if you want to prevent from accessing the restricted route ...
+    // ... or just use the default behaviour by calling `super.handleUnauthorizedRole()`
+    const { router } = this.context;
+    router.push('/');
   }
 
   render() {
@@ -113,6 +117,8 @@ class RestrictedContainer extends AuthorizedComponent {
 
 export default RestrictedContainer;
 ```
+
+WARNING! Be careful - if you override the `handleUnauthorizedRole` method, it will stop redirecting to the `notAuthorizedPath` path. Instead, it will allow access to the restricted route so you have to prevent it on your own (by redirecting somewhere manually or calling `super.handleUnauthorizedRole()` to use the default behaviour).
 
 ### RoleAwareComponent
 
