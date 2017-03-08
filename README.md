@@ -79,6 +79,52 @@ The `this.notAuthorizedPath` property is intended to be set to the path name of 
 
 And that's it - from now on, all child routes of the `RestrictedContainer` component will be restricted by the `admin` user role.
 
+#### Custom handling of unauthorized access
+
+By default when a user with insufficient roles tries to access a component he is redirected to `notAuthorizedPath` 
+defined in `AuthorizedComponent`. Sometimes you may want to, for example, log it to console etc.
+
+You can achieve it by overriding method `handleUnauthorizedRole(routeRoles, userRoles)` from 
+`AuthorizedComponent`. 
+
+```JavaScript
+import React from 'react';
+import RouteHandler from './RouteHandler';
+import { AuthorizedComponent } from 'react-router-role-authorization';
+import Cookies from 'js-cookie';
+
+class RestrictedContainer extends AuthorizedComponent {
+  constructor(props) {
+    super(props);
+
+    this.userRoles = Cookies.get('user').roles;
+    this.notAuthorizedPath = '/not-found';
+  }
+  
+  handleUnauthorizedRole(routeRoles, userRoles){
+    // handle unsuccessful authorization somehow
+    console.log(`Route is available for roles: ${routeRoles}, but your roles are: ${userRoles}...`);
+    
+    // you should still redirect somewhere else if you want to prevent from accessing the restricted route ...
+    // ... or just use the default behaviour by calling `super.handleUnauthorizedRole()`
+    const { router } = this.context;
+    router.push('/');
+  }
+
+  render() {
+    return (
+      <div>
+        <RouteHandler {...this.props} />
+      </div>
+    );
+  }
+}
+
+export default RestrictedContainer;
+```
+
+**WARNING!** Be careful - if you override the `handleUnauthorizedRole` method, it will stop redirecting to the `notAuthorizedPath` path. Instead, it will allow access to the restricted route so you have to prevent it on your own (by redirecting somewhere manually or calling `super.handleUnauthorizedRole()` to use the default behaviour).
+
 ### RoleAwareComponent
 
 The `RoleAwareComponent` component gives you the ability to show or hide the component depending on given user roles.
@@ -120,3 +166,4 @@ But this is not all. The component provides two methods: `this.rolesMatched` and
 - `this.rolesMatchedExact` checks if the available roles array has exactly the same items as the user roles array.
 
 As you can see in the example above, you can use one of these methods to return the markup of the component or just `null`.
+
