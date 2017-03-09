@@ -6,6 +6,7 @@ Please see below a list of project versions with description of changes appeared
 
 * Unnecessary index.html removed
 * Changelog file added
+* yarn.lock file added to .gitignore
 
 ## v1.1.1
 
