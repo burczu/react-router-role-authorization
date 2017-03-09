@@ -1,6 +1,6 @@
 {
   "name": "react-router-role-authorization",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Role-based authorization component for react-router",
   "scripts": {
     "test": "eslint lib/ spec/ && ./node_modules/karma/bin/karma start karma.conf.js",
