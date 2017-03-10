@@ -1,16 +1,15 @@
 {
   "name": "react-router-role-authorization",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Role-based authorization component for react-router",
   "scripts": {
     "test": "eslint lib/ spec/ && ./node_modules/karma/bin/karma start karma.conf.js",
     "watch-test": "./node_modules/karma/bin/karma start karma.conf.js --auto-watch --no-single-run",
-    "build": "webpack",
-    "start": "webpack-dev-server --inline --hot"
+    "build": "webpack"
   },
   "main": "dist/index.js",
   "author": "Bartłomiej Dybowski",
-  "license": "BSD",
+  "license": "MIT",
   "keywords": [
     "react",
     "reactjs",
