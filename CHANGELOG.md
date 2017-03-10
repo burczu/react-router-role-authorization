@@ -1,9 +1,10 @@
 # Role-based authorization for react-router - CHANGELOG
 
-Please see below a list of project versions with description of changes appeared in these versions.
+Please see below a list of project versions with the description of changes appeared in these versions.
 
 ## v1.1.2
 
+* Contributing file added
 * Unnecessary index.html removed
 * Changelog file added
 * yarn.lock file added to .gitignore
