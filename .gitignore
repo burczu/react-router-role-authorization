@@ -38,6 +38,3 @@ dist
 # packed npm module
 *.tgz
 pakmanaged.js
-
-# yarn
-yarn.lock
