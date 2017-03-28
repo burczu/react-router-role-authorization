@@ -2,6 +2,11 @@
 
 Please see below a list of project versions with the description of changes appeared in these versions.
 
+## v1.1.3
+
+* react-router moved to peerDependencies
+* yarn.lock removed from .gitignore
+
 ## v1.1.2
 
 * Contributing file added
