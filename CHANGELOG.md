@@ -2,6 +2,11 @@
 
 Please see below a list of project versions with the description of changes appeared in these versions.
 
+## v1.1.4
+
+* add React 16 as a peer dependency
+* use prop-types package for PropTypes
+
 ## v1.1.3
 
 * react-router moved to peerDependencies
